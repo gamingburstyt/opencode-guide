@@ -2,7 +2,7 @@
 ### Free AI Coding Assistant — Complete Setup Guide
 
 > **Guide by [@GamingBurst007](https://youtube.com/@GamingBurst007)**  
-> 📺 YouTube · 💬 Discord · 📸 Instagram — `@GamingBurst007`
+> 📺 YouTube — `@GamingBurst007`
 
 ---
 
@@ -113,22 +113,35 @@ opencode
 Inside OpenCode do this:
 1. Type `/connect`
 2. Select **opencode**
-3. Open the link shown in your Android browser
-4. Login → copy the API key shown
-5. Paste it back in the terminal
-6. Select **MiniMax M2.5 Free**
+3. Paste your **Zen API key** when prompted
+4. Select **MiniMax M2.5 Free** as your model
 
 > ✅ Done! API key is saved forever. You never need to do `/connect` again.
 
 ---
 
 ## ⚡ Daily Startup
-> Every time you open Termux — only 4 commands, under 1 minute
+> Every time you open Termux — under 1 minute
 
+**1. Prevent Android from killing Termux in the background:**
 ```bash
 termux-wake-lock
+```
+
+**2. Open Alpine:**
+```bash
 alpine
+```
+
+**3. Navigate to your project folder where you want to code:**
+```bash
 cd /sdcard/Download/your-project-folder
+```
+> Replace `your-project-folder` with your actual folder name, for example:
+> `cd /sdcard/Download/my-app`
+
+**4. Launch OpenCode and start working:**
+```bash
 opencode
 ```
 
@@ -351,8 +364,12 @@ gh auth login
 | Platform | Link |
 |---|---|
 | 📺 YouTube | youtube.com/@GamingBurst007 |
-| 💬 Discord | discord.gg/GamingBurst007 |
-| 📸 Instagram | instagram.com/GamingBurst007 |
+
+---
+
+> 💬 **Have a question?** Drop it in the comments — I'll try to reply to every comment!
+>
+> 👍 **If this helped you** — Like, Share & Subscribe for more interesting and useful videos!
 
 ---
 
