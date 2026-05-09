@@ -383,6 +383,120 @@ tmux attach -t dev
 
 ---
 
+## 🟢 Optional — Add NVIDIA NIM Models (Free Backup Models)
+> Skip this section if you are happy with MiniMax M2.5 only
+
+NVIDIA NIM gives you access to 50+ powerful free models — including **MiniMax M2.7** (newer than M2.5), **DeepSeek V3.2**, **Llama 3.3 70B**, and more. This does **not** remove or affect your existing MiniMax M2.5 Zen connection — both work side by side.
+
+> 💡 **Why add this?** When MiniMax M2.5 hits its rate limit and makes you wait, you can instantly switch to a NVIDIA NIM model and keep working.
+
+---
+
+### Step 1 — Get Your Free NVIDIA API Key
+1. Go to **build.nvidia.com** in your browser
+2. Sign up for a free account — no credit card needed
+3. Click any model → **Get API Key** → copy it
+4. Your key will start with `nvapi-...`
+
+> ✅ Free tier gives rate-limited access to 50+ models including MiniMax M2.7, DeepSeek, Llama, and more.
+
+---
+
+### Step 2 — Create the NVIDIA NIM Config File
+> 🔵 **Run in Alpine**
+
+```bash
+mkdir -p ~/.config/opencode
+cat > ~/.config/opencode/opencode.json << 'EOF'
+{
+  "$schema": "https://opencode.ai/config.json",
+  "provider": {
+    "nvidia": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "NVIDIA NIM",
+      "options": {
+        "baseURL": "https://integrate.api.nvidia.com/v1",
+        "apiKey": "ADD YOUR NVIDIA NIM API KEY HERE"
+      },
+      "models": {
+        "minimaxai/minimax-m2.7": {
+          "name": "MiniMax M2.7"
+        },
+        "deepseek-ai/deepseek-v3": {
+          "name": "DeepSeek V3"
+        },
+        "deepseek-ai/deepseek-v3-2": {
+          "name": "DeepSeek V3.2"
+        },
+        "meta/llama-3.3-70b-instruct": {
+          "name": "Llama 3.3 70B"
+        },
+        "nvidia/llama-3.1-nemotron-70b-instruct": {
+          "name": "Nemotron 70B"
+        }
+      }
+    }
+  }
+}
+EOF
+```
+
+> ⚠️ Replace `ADD YOUR NVIDIA NIM API KEY HERE` with your actual `nvapi-...` key before running.
+
+---
+
+### Step 3 — Verify the Config Was Saved
+> 🔵 **Run in Alpine**
+
+```bash
+cat ~/.config/opencode/opencode.json
+```
+> Make sure your API key is in there and the JSON looks correct.
+
+---
+
+### Step 4 — Launch OpenCode and Select a NVIDIA Model
+> 🔵 **Run in Alpine**
+
+```bash
+opencode
+```
+
+Inside OpenCode:
+1. Type `/models`
+2. Scroll up — you will see **NVIDIA NIM** as a new section
+3. Select any model from the list
+
+> ✅ Done! Your NVIDIA NIM models are now available alongside MiniMax M2.5.
+
+---
+
+### Recommended NVIDIA NIM Models
+
+| Model | Best For |
+|---|---|
+| **MiniMax M2.7** | Best overall — newer than M2.5, great for coding |
+| **DeepSeek V3.2** | Fastest good-quality coding model |
+| **DeepSeek V3** | Slightly lighter, very snappy |
+| **Llama 3.3 70B** | Stable all-rounder |
+| **Nemotron 70B** | Strong reasoning + code |
+
+> ⚠️ **Avoid DeepSeek V4 Flash and V4 Pro for now** — they have a known hanging bug in OpenCode and will freeze your session.
+
+---
+
+### Switching Between MiniMax M2.5 and NVIDIA NIM
+Inside OpenCode, just type `/models` anytime to switch between providers. No restart needed.
+
+> 💡 **Smart workflow:** Use **MiniMax M2.5** as your main model. When it rate limits you, switch to **MiniMax M2.7 on NVIDIA NIM** or **DeepSeek V3.2** and keep working without waiting.
+
+---
+
+### What the Context Bar Means
+At the bottom of OpenCode you'll see something like `10.9K (5%)` — this is your **context window usage**, not your rate limit. It shows how much of the current conversation the model is holding in memory. Nothing to worry about until it gets close to 90%, at which point start a fresh session.
+
+---
+
 ## 🐙 Optional — GitHub Integration
 > 🔵 **All commands run in Alpine**
 > Skip this section if you don't need to push code to GitHub
@@ -472,6 +586,7 @@ gh auth login
 | OpenCode | https://opencode.ai |
 | OpenCode Docs | https://opencode.ai/docs |
 | Termux GitHub | https://github.com/termux/termux-app/releases |
+| NVIDIA NIM | https://build.nvidia.com |
 
 ---
 
