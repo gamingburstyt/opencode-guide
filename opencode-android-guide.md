@@ -21,6 +21,12 @@
 
 ---
 
+> 💡 **Quick Guide — Where to run commands:**
+> - `🟡 Termux` — run in Termux directly after opening the app
+> - `🔵 Alpine` — run after typing `alpine` to enter Alpine
+
+---
+
 ## 🚀 Installation (First Time Only)
 
 ### Step 1 — Install Termux
@@ -33,7 +39,8 @@
 ---
 
 ### Step 2 — Set Up Termux
-Open Termux and run these commands:
+> 🟡 **Run in Termux**
+
 ```bash
 pkg update -y && pkg upgrade -y
 pkg install proot-distro curl unzip ripgrep -y
@@ -42,6 +49,8 @@ pkg install proot-distro curl unzip ripgrep -y
 ---
 
 ### Step 3 — Allow Storage Access
+> 🟡 **Run in Termux**
+
 ```bash
 termux-setup-storage
 ```
@@ -50,6 +59,8 @@ termux-setup-storage
 ---
 
 ### Step 4 — Create Permanent Alpine Shortcut
+> 🟡 **Run in Termux**
+
 ```bash
 echo 'alias alpine="proot-distro login alpine --bind /sdcard:/sdcard"' >> ~/.bashrc
 source ~/.bashrc
@@ -59,6 +70,8 @@ source ~/.bashrc
 ---
 
 ### Step 5 — Install Alpine Linux
+> 🟡 **Run in Termux**
+
 ```bash
 proot-distro install alpine
 alpine
@@ -69,6 +82,8 @@ alpine
 ---
 
 ### Step 6 — Install Dependencies Inside Alpine
+> 🔵 **Run in Alpine**
+
 ```bash
 apk add curl bash libstdc++ libgcc
 ```
@@ -76,6 +91,8 @@ apk add curl bash libstdc++ libgcc
 ---
 
 ### Step 7 — Install OpenCode
+> 🔵 **Run in Alpine**
+
 ```bash
 curl -fsSL https://opencode.ai/install | bash
 export PATH="$HOME/.opencode/bin:$PATH"
@@ -89,6 +106,8 @@ echo 'export PATH="$HOME/.opencode/bin:$PATH"' >> ~/.bashrc
 ---
 
 ### Step 8 — Verify Installation
+> 🔵 **Run in Alpine**
+
 ```bash
 opencode --version
 ```
@@ -105,7 +124,8 @@ opencode --version
 ---
 
 ### Step 10 — Connect MiniMax M2.5 Free
-Launch OpenCode:
+> 🔵 **Run in Alpine**
+
 ```bash
 opencode
 ```
@@ -123,24 +143,24 @@ Inside OpenCode do this:
 ## ⚡ Daily Startup
 > Every time you open Termux — under 1 minute
 
-**1. Prevent Android from killing Termux in the background:**
+**1. 🟡 Termux — Prevent Android from killing Termux in the background:**
 ```bash
 termux-wake-lock
 ```
 
-**2. Open Alpine:**
+**2. 🟡 Termux — Open Alpine:**
 ```bash
 alpine
 ```
 
-**3. Navigate to your project folder where you want to code:**
+**3. 🔵 Alpine — Navigate to your project folder where you want to code:**
 ```bash
 cd /sdcard/Download/your-project-folder
 ```
 > Replace `your-project-folder` with your actual folder name, for example:
 > `cd /sdcard/Download/my-app`
 
-**4. Launch OpenCode and start working:**
+**4. 🔵 Alpine — Launch OpenCode and start working:**
 ```bash
 opencode
 ```
@@ -148,6 +168,7 @@ opencode
 ---
 
 ## 📁 Navigating Folders
+> 🔵 **All folder commands run in Alpine**
 
 | What you want to do | Command |
 |---|---|
@@ -167,6 +188,7 @@ opencode
 ---
 
 ## 🔄 Switching Between Projects
+> 🔵 **Run in Alpine**
 
 ```bash
 /exit                              # exit OpenCode
@@ -186,9 +208,39 @@ opencode                           # launch again
 
 ---
 
+## 🌐 Testing Your Project in Browser (Optional)
+> 🔵 **Run in Alpine**
+
+> Only needed if you want to preview your site while coding
+
+Install once:
+```bash
+apk add nodejs npm tmux
+```
+
+Start your dev server:
+```bash
+cd /sdcard/Download/your-project
+npm install
+npm run dev
+```
+
+> 📱 Open the **Network URL** shown (e.g. `http://192.168.x.x:5173`) in your Android browser — not the localhost one.
+
+Keep server running in background while using OpenCode:
+```bash
+tmux new-session -s dev
+npm run dev
+# Press Ctrl+B then D to detach
+# Come back anytime with: tmux attach -t dev
+```
+
+---
+
 ## 🔧 Troubleshooting
 
 **`opencode: command not found`**
+> 🔵 Run in Alpine
 ```bash
 export PATH="$HOME/.opencode/bin:$PATH"
 ```
@@ -196,6 +248,7 @@ export PATH="$HOME/.opencode/bin:$PATH"
 ---
 
 **`libstdc++ not found` error**
+> 🔵 Run in Alpine
 ```bash
 apk add libstdc++ libgcc
 ```
@@ -203,24 +256,30 @@ apk add libstdc++ libgcc
 ---
 
 **`proot-distro should not be executed under PRoot`**
-> You are already inside Alpine. Type `exit` first, then run the command from Termux.
+> You are already inside Alpine. Type `exit` first to go back to Termux, then run the command from there.
 
 ---
 
 **`/sdcard not accessible` inside Alpine**
+> 🟡 Exit Alpine first, then run in Termux:
 ```bash
-# Exit Alpine first, then run in Termux:
 termux-setup-storage
-# Then re-enter Alpine:
+```
+> 🟡 Then re-enter Alpine:
+```bash
 alpine
 ```
 
 ---
 
 **Android killed Termux in the background**
+> 🟡 Run in Termux:
 ```bash
 termux-wake-lock
 alpine
+```
+> 🔵 Then in Alpine:
+```bash
 cd /sdcard/Download/your-project
 opencode
 ```
@@ -229,6 +288,7 @@ opencode
 ---
 
 **OpenCode freezes or crashes**
+> 🔵 Run in Alpine
 ```bash
 /exit
 cd /sdcard/Download/your-project
@@ -237,36 +297,94 @@ opencode
 
 ---
 
+**`npm run dev` says cannot find package.json**
+> You are in the wrong folder. Make sure you `cd` into your project folder first:
+```bash
+ls /sdcard/Download/    # see all your folders
+cd /sdcard/Download/your-project
+npm run dev
+```
+
+---
+
+**`npm run dev` fails with permission error / error 13**
+> Node.js v24 has a bug in sandboxed environments — it fails when detecting network interfaces. Fix it permanently:
+
+> 🔵 Run in Alpine:
+```bash
+echo "export NETWORK_INTERFACE_IGNORE='*'" >> ~/.bashrc
+source ~/.bashrc
+```
+
+Then use this command instead of `npm run dev` in any project:
+```bash
+NETWORK_INTERFACE_IGNORE='*' npm run dev
+```
+
+Or create a permanent wrapper so you never have to think about it again:
+```bash
+mkdir -p ~/.local/bin
+cat > ~/.local/bin/npm-dev << 'EOF'
+#!/bin/bash
+export NETWORK_INTERFACE_IGNORE='*'
+npm run dev "$@"
+EOF
+chmod +x ~/.local/bin/npm-dev
+```
+
+Add it to PATH so it works everywhere:
+```bash
+echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc
+source ~/.bashrc
+```
+
+Now just type `npm-dev` instead of `npm run dev` in any project.
+
+---
+
 ## 📌 Key Things to Remember
 
-- ✅ Always run `termux-wake-lock` before starting
+- ✅ Always run `termux-wake-lock` before starting — **in Termux**
+- ✅ Always type `alpine` to enter Alpine — **in Termux**
+- ✅ All coding commands (`opencode`, `cd`, `npm`) run — **in Alpine**
 - ✅ Termux must be the **GitHub version** — not Play Store
 - ✅ Always `cd` to your project folder **before** typing `opencode`
 - ✅ `/connect` only needed once — API key saved forever
-- ✅ Type `alpine` to enter Alpine (shortcut we created in Step 4)
 - ✅ MiniMax M2.5 Free has soft limits — if slow, just wait a moment
 - ✅ Use `/exit` to cleanly quit OpenCode
+- ✅ Use the **Network URL** (not localhost) to open your site in Android browser
 
 ---
 
 ## ⚡ Quick Reference
 
 ```bash
-# Daily startup
+# 🟡 Termux
 termux-wake-lock
 alpine
+
+# 🔵 Alpine
 cd /sdcard/Download/your-project
 opencode
 
-# Switch project
+# Switch project (🔵 Alpine)
 /exit
 cd /sdcard/Download/other-project
 opencode
+
+# Start dev server (🔵 Alpine)
+tmux new-session -s dev
+npm run dev
+# Ctrl+B then D to detach
+
+# Come back to dev server (🔵 Alpine)
+tmux attach -t dev
 ```
 
 ---
 
 ## 🐙 Optional — GitHub Integration
+> 🔵 **All commands run in Alpine**
 > Skip this section if you don't need to push code to GitHub
 
 ### Install git and GitHub CLI
