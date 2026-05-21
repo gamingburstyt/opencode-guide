@@ -1,609 +1,699 @@
-# 📱 OpenCode + MiniMax M2.5 Free on Android
-### Free AI Coding Assistant — Complete Setup Guide
+📱 OpenCode + MiniMax M2.5 Free on Android
 
-> **Guide by [@GamingBurst007](https://youtube.com/@GamingBurst007)**  
-> 📺 YouTube — `@GamingBurst007`
+Free AI Coding Assistant — Complete Setup Guide
 
----
+> Guide by @GamingBurst007
+📺 YouTube — @GamingBurst007
 
-## ✅ What You'll Have
-- OpenCode running on your Android phone via Termux
-- MiniMax M2.5 Free model — no credit card, no GPU needed
-- Full AI coding assistant right in your terminal
+
+
 
 ---
 
-## 📋 Requirements
-- Android phone
-- **Termux (GitHub Version)** — link in links section below
-- Internet connection
-- GitHub account *(optional — only needed if you want to push code to GitHub)*
+✅ What You'll Have
+
+OpenCode running on your Android phone via Termux
+
+MiniMax M2.5 Free model — no credit card, no GPU needed
+
+Full AI coding assistant right in your terminal
+
+
 
 ---
 
-> 💡 **Quick Guide — Where to run commands:**
-> - `🟡 Termux` — run in Termux directly after opening the app
-> - `🔵 Alpine` — run after typing `alpine` to enter Alpine
+📋 Requirements
+
+Android phone
+
+Termux (GitHub Version) — link in links section below
+
+Internet connection
+
+GitHub account (optional — only needed if you want to push code to GitHub)
+
+
 
 ---
 
-## 🚀 Installation (First Time Only)
+> 💡 Quick Guide — Where to run commands:
 
-### Step 1 — Install Termux
+🟡 Termux — run in Termux directly after opening the app
+
+🔵 Alpine — run after typing alpine to enter Alpine
+
+🟢 Debian — run after typing debian to enter Debian
+
+
+
+
+
+---
+
+🚀 Installation (First Time Only)
+
+Step 1 — Install Termux
+
 1. Go to the link in the links section below
-2. Download the latest APK — pick **arm64-v8a** for most phones
+
+
+2. Download the latest APK — pick arm64-v8a for most phones
+
+
 3. Install it
 
-> ⚠️ **WARNING:** Do NOT use the Play Store version. It is outdated and broken.
+
+
+> ⚠️ WARNING: Do NOT use the Play Store version. It is outdated and broken.
+
+
+
 
 ---
 
-### Step 2 — Set Up Termux
-> 🟡 **Run in Termux**
+Step 2 — Set Up Termux
 
-```bash
+> 🟡 Run in Termux
+
+
+
 pkg update -y && pkg upgrade -y
 pkg install proot-distro curl unzip ripgrep -y
-```
+
 
 ---
 
-### Step 3 — Allow Storage Access
-> 🟡 **Run in Termux**
+Step 3 — Allow Storage Access
 
-```bash
+> 🟡 Run in Termux
+
+
+
 termux-setup-storage
-```
-> Tap **Allow** on the popup that appears.
+
+> Tap Allow on the popup that appears.
+
+
+
 
 ---
 
-### Step 4 — Create Permanent Alpine Shortcut
-> 🟡 **Run in Termux**
+🟢 Method 1 — Alpine Linux (Lightweight)
 
-```bash
+> 💡 Alpine is smaller and lighter, but some users may get OpenCode crashes or libc-related issues.
+If Alpine doesn't work properly on your device, scroll down to the Debian method.
+
+
+
+
+---
+
+Step 4 — Create Permanent Alpine Shortcut
+
+> 🟡 Run in Termux
+
+
+
 echo 'alias alpine="proot-distro login alpine --bind /sdcard:/sdcard"' >> ~/.bashrc
 source ~/.bashrc
-```
-> Now you can just type `alpine` to enter Alpine every time — no long command needed.
+
+> Now you can just type alpine to enter Alpine every time — no long command needed.
+
+
+
 
 ---
 
-### Step 5 — Install Alpine Linux
-> 🟡 **Run in Termux**
+Step 5 — Install Alpine Linux
 
-```bash
+> 🟡 Run in Termux
+
+
+
 proot-distro install alpine
 alpine
-```
-> Your prompt changes to `localhost:~#`  
-> Everything from this point runs **INSIDE Alpine**.
+
+> Your prompt changes to localhost:~#
+Everything from this point runs INSIDE Alpine.
+
+
+
 
 ---
 
-### Step 6 — Install Dependencies Inside Alpine
-> 🔵 **Run in Alpine**
+Step 6 — Install Dependencies Inside Alpine
 
-```bash
+> 🔵 Run in Alpine
+
+
+
 apk add curl bash libstdc++ libgcc
-```
+
 
 ---
 
-### Step 7 — Install OpenCode
-> 🔵 **Run in Alpine**
+Step 7 — Install OpenCode
 
-```bash
+> 🔵 Run in Alpine
+
+
+
 curl -fsSL https://opencode.ai/install | bash
 export PATH="$HOME/.opencode/bin:$PATH"
-```
 
 Make PATH permanent so it works every session:
-```bash
+
 echo 'export PATH="$HOME/.opencode/bin:$PATH"' >> ~/.bashrc
-```
+
 
 ---
 
-### Step 8 — Verify Installation
-> 🔵 **Run in Alpine**
+Step 8 — Verify Installation
 
-```bash
+> 🔵 Run in Alpine
+
+
+
 opencode --version
-```
-> ✅ Should show a version number like `1.x.xx`
+
+> ✅ Should show a version number like 1.x.xx
+
+
+
 
 ---
 
-### Step 9 — Get Your OpenCode Zen API Key
-1. Go to **opencode.ai**
-2. Click **Zen** → Login → create a free account
-3. Go to **API Keys** → Create → name it anything → copy the key
+🟢 If Alpine Doesn't Work — Use Debian (Recommended)
+
+> ⚠️ Some devices may get errors like:
+
+gnu_get_libc_version
+
+OpenCode crashes/freezes
+
+Bun/Node native module issues
+
+npm install failures
+
+
+This happens because Alpine uses musl libc, while many modern tools expect glibc.
+
+Debian is currently the most stable OpenCode setup for Android.
+
+
+
+
+---
+
+Step 9 — Create Permanent Debian Shortcut
+
+> 🟡 Run in Termux
+
+
+
+echo 'alias debian="proot-distro login debian --bind /sdcard:/sdcard"' >> ~/.bashrc
+source ~/.bashrc
+
+> ✅ Now you can just type debian anytime to enter Debian.
+
+
+
+
+---
+
+Step 10 — Install Debian Linux
+
+> 🟡 Run in Termux
+
+
+
+proot-distro install debian
+debian
+
+> Your prompt changes to something like:
+
+
+
+root@localhost:~#
+
+> Everything from this point runs INSIDE Debian.
+
+
+
+
+---
+
+Step 11 — Install Dependencies Inside Debian
+
+> 🟢 Run in Debian
+
+
+
+apt update && apt upgrade -y
+apt install curl bash git build-essential -y
+
+
+---
+
+Step 12 — Install OpenCode
+
+> 🟢 Run in Debian
+
+
+
+curl -fsSL https://opencode.ai/install | bash
+export PATH="$HOME/.opencode/bin:$PATH"
+
+Make PATH permanent:
+
+echo 'export PATH="$HOME/.opencode/bin:$PATH"' >> ~/.bashrc
+source ~/.bashrc
+
+
+---
+
+Step 13 — Verify Installation
+
+> 🟢 Run in Debian
+
+
+
+opencode --version
+
+> ✅ Should show a version number like 1.x.xx
+
+
+
+
+---
+
+🧠 Alpine vs Debian — Which Should You Use?
+
+	Alpine	Debian
+
+Size	Smaller	Bigger
+Speed	Slightly faster	Slightly slower
+OpenCode compatibility	⚠️ Mixed	✅ Best
+Native module support	⚠️ Can break	✅ Stable
+Recommended for beginners	❌ Not really	✅ Yes
+
+
+> 💡 Recommendation:
+Try Alpine first if you want the lightest setup.
+If you get weird crashes or libc errors, switch to Debian and stay there.
+
+
+
+
+---
+
+Step 14 — Get Your OpenCode Zen API Key
+
+1. Go to opencode.ai
+
+
+2. Click Zen → Login → create a free account
+
+
+3. Go to API Keys → Create → name it anything → copy the key
+
+
 4. Save it somewhere safe
 
+
+
+
 ---
 
-### Step 10 — Connect MiniMax M2.5 Free
-> 🔵 **Run in Alpine**
+Step 15 — Connect MiniMax M2.5 Free
 
-```bash
+> 🔵 Run in Alpine
+OR
+🟢 Run in Debian
+
+
+
 opencode
-```
 
 Inside OpenCode do this:
-1. Type `/connect`
-2. Select **opencode**
-3. Paste your **Zen API key** when prompted
-4. Select **MiniMax M2.5 Free** as your model
 
-> ✅ Done! API key is saved forever. You never need to do `/connect` again.
+1. Type /connect
+
+
+2. Select opencode
+
+
+3. Paste your Zen API key when prompted
+
+
+4. Select MiniMax M2.5 Free as your model
+
+
+
+> ✅ Done! API key is saved forever. You never need to do /connect again.
+
+
+
 
 ---
 
-## ⚡ Daily Startup
+⚡ Daily Startup
+
 > Every time you open Termux — under 1 minute
 
-**1. 🟡 Termux — Prevent Android from killing Termux in the background:**
-```bash
+
+
+🟡 Termux — Prevent Android from killing Termux in the background
+
 termux-wake-lock
-```
 
-**2. 🟡 Termux — Open Alpine:**
-```bash
+
+---
+
+⚡ Alpine Daily Startup
+
+🟡 Termux
+
 alpine
-```
 
-**3. 🔵 Alpine — Navigate to your project folder where you want to code:**
-```bash
+🔵 Alpine
+
 cd /sdcard/Download/your-project-folder
-```
-> Replace `your-project-folder` with your actual folder name, for example:
-> `cd /sdcard/Download/my-app`
-
-**4. 🔵 Alpine — Launch OpenCode and start working:**
-```bash
-opencode
-```
-
----
-
-## 📁 Navigating Folders
-> 🔵 **All folder commands run in Alpine**
-
-| What you want to do | Command |
-|---|---|
-| Go to a project in Downloads | `cd /sdcard/Download/example-folder` |
-| Go to home directory | `cd ~` |
-| Create a new project folder | `mkdir /sdcard/Download/my-project` |
-| See what's in current folder | `ls` |
-| See your current location | `pwd` |
-| Delete a file | `rm filename.txt` |
-| Delete a folder | `rm -rf foldername` |
-| Copy a file | `cp file.txt /sdcard/Download/other-folder/` |
-| Move or rename a file | `mv oldname.txt newname.txt` |
-| Create an empty file | `touch filename.txt` |
-| View contents of a file | `cat filename.txt` |
-| Search for text inside files | `grep -r "search term" .` |
-
----
-
-## 🔄 Switching Between Projects
-> 🔵 **Run in Alpine**
-
-```bash
-/exit                              # exit OpenCode
-cd /sdcard/Download/other-project  # go to new folder
-opencode                           # launch again
-```
-
----
-
-## ❌ How to Exit / Turn Off
-
-| What | How |
-|---|---|
-| Exit OpenCode | Press `Ctrl+C` or type `/exit` |
-| Exit Alpine back to Termux | Type `exit` |
-| Close everything | Just close the Termux app |
-
----
-
-## 🌐 Testing Your Project in Browser (Optional)
-> 🔵 **Run in Alpine**
-
-> Only needed if you want to preview your site while coding
-
-Install once:
-```bash
-apk add nodejs npm tmux
-```
-
-Start your dev server:
-```bash
-cd /sdcard/Download/your-project
-npm install
-npm run dev
-```
-
-> 📱 Open the **Network URL** shown (e.g. `http://192.168.x.x:5173`) in your Android browser — not the localhost one.
-
-Keep server running in background while using OpenCode:
-```bash
-tmux new-session -s dev
-npm run dev
-# Press Ctrl+B then D to detach
-# Come back anytime with: tmux attach -t dev
-```
-
----
-
-## 🔧 Troubleshooting
-
-**`opencode: command not found`**
-> 🔵 Run in Alpine
-```bash
-export PATH="$HOME/.opencode/bin:$PATH"
-```
-
----
-
-**`libstdc++ not found` error**
-> 🔵 Run in Alpine
-```bash
-apk add libstdc++ libgcc
-```
-
----
-
-**`proot-distro should not be executed under PRoot`**
-> You are already inside Alpine. Type `exit` first to go back to Termux, then run the command from there.
-
----
-
-**`/sdcard not accessible` inside Alpine**
-> 🟡 Exit Alpine first, then run in Termux:
-```bash
-termux-setup-storage
-```
-> 🟡 Then re-enter Alpine:
-```bash
-alpine
-```
-
----
-
-**Android killed Termux in the background**
-> 🟡 Run in Termux:
-```bash
-termux-wake-lock
-alpine
-```
-> 🔵 Then in Alpine:
-```bash
-cd /sdcard/Download/your-project
-opencode
-```
-> 💡 Fix permanently: **Settings → Apps → Termux → Battery → Unrestricted**
-
----
-
-**OpenCode freezes or crashes**
-> 🔵 Run in Alpine
-```bash
-/exit
-cd /sdcard/Download/your-project
-opencode
-```
-
----
-
-**`npm run dev` says cannot find package.json**
-> You are in the wrong folder. Make sure you `cd` into your project folder first:
-```bash
-ls /sdcard/Download/    # see all your folders
-cd /sdcard/Download/your-project
-npm run dev
-```
-
----
-
-**`npm run dev` fails with permission error / error 13**
-> Node.js v24 has a bug in sandboxed environments — it fails when detecting network interfaces. Fix it permanently:
-
-> 🔵 Run in Alpine:
-```bash
-echo "export NETWORK_INTERFACE_IGNORE='*'" >> ~/.bashrc
-source ~/.bashrc
-```
-
-Then use this command instead of `npm run dev` in any project:
-```bash
-NETWORK_INTERFACE_IGNORE='*' npm run dev
-```
-
-Or create a permanent wrapper so you never have to think about it again:
-```bash
-mkdir -p ~/.local/bin
-cat > ~/.local/bin/npm-dev << 'EOF'
-#!/bin/bash
-export NETWORK_INTERFACE_IGNORE='*'
-npm run dev "$@"
-EOF
-chmod +x ~/.local/bin/npm-dev
-```
-
-Add it to PATH so it works everywhere:
-```bash
-echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc
-source ~/.bashrc
-```
-
-Now just type `npm-dev` instead of `npm run dev` in any project.
-
----
-
-## 📌 Key Things to Remember
-
-- ✅ Always run `termux-wake-lock` before starting — **in Termux**
-- ✅ Always type `alpine` to enter Alpine — **in Termux**
-- ✅ All coding commands (`opencode`, `cd`, `npm`) run — **in Alpine**
-- ✅ Termux must be the **GitHub version** — not Play Store
-- ✅ Always `cd` to your project folder **before** typing `opencode`
-- ✅ `/connect` only needed once — API key saved forever
-- ✅ MiniMax M2.5 Free has soft limits — if slow, just wait a moment
-- ✅ Use `/exit` to cleanly quit OpenCode
-- ✅ Use the **Network URL** (not localhost) to open your site in Android browser
-
----
-
-## ⚡ Quick Reference
-
-```bash
-# 🟡 Termux
-termux-wake-lock
-alpine
-
-# 🔵 Alpine
-cd /sdcard/Download/your-project
 opencode
 
-# Switch project (🔵 Alpine)
+
+---
+
+⚡ Debian Daily Startup
+
+🟡 Termux
+
+debian
+
+🟢 Debian
+
+cd /sdcard/Download/your-project-folder
+opencode
+
+
+---
+
+📁 Navigating Folders
+
+> 🔵 Alpine / 🟢 Debian
+
+
+
+What you want to do	Command
+
+Go to a project in Downloads	cd /sdcard/Download/example-folder
+Go to home directory	cd ~
+Create a new project folder	mkdir /sdcard/Download/my-project
+See what's in current folder	ls
+See your current location	pwd
+Delete a file	rm filename.txt
+Delete a folder	rm -rf foldername
+Copy a file	cp file.txt /sdcard/Download/other-folder/
+Move or rename a file	mv oldname.txt newname.txt
+Create an empty file	touch filename.txt
+View contents of a file	cat filename.txt
+Search for text inside files	grep -r "search term" .
+
+
+
+---
+
+🔄 Switching Between Projects
+
+> 🔵 Alpine / 🟢 Debian
+
+
+
 /exit
 cd /sdcard/Download/other-project
 opencode
 
-# Start dev server (🔵 Alpine)
+
+---
+
+❌ How to Exit / Turn Off
+
+What	How
+
+Exit OpenCode	Press Ctrl+C or type /exit
+Exit Alpine/Debian back to Termux	Type exit
+Close everything	Just close the Termux app
+
+
+
+---
+
+🌐 Testing Your Project in Browser (Optional)
+
+Alpine
+
+> 🔵 Run in Alpine
+
+
+
+Install once:
+
+apk add nodejs npm tmux
+
+
+---
+
+Debian
+
+> 🟢 Run in Debian
+
+
+
+Install once:
+
+apt install nodejs npm tmux -y
+
+
+---
+
+Start Your Dev Server
+
+> 🔵 Alpine / 🟢 Debian
+
+
+
+cd /sdcard/Download/your-project
+npm install
+npm run dev
+
+> 📱 Open the Network URL shown (e.g. http://192.168.x.x:5173) in your Android browser — not the localhost one.
+
+
+
+
+---
+
+Keep Server Running in Background
+
+> 🔵 Alpine / 🟢 Debian
+
+
+
 tmux new-session -s dev
 npm run dev
-# Ctrl+B then D to detach
+# Press Ctrl+B then D to detach
+# Come back anytime with: tmux attach -t dev
 
-# Come back to dev server (🔵 Alpine)
-tmux attach -t dev
-```
 
 ---
 
-## 🟢 Optional — Add NVIDIA NIM Models (Free Backup Models)
-> Skip this section if you are happy with MiniMax M2.5 only
+🔧 Troubleshooting
 
-NVIDIA NIM gives you access to 50+ powerful free models — including **MiniMax M2.7** (newer than M2.5), **DeepSeek V3.2**, **Llama 3.3 70B**, and more. This does **not** remove or affect your existing MiniMax M2.5 Zen connection — both work side by side.
+opencode: command not found
 
-> 💡 **Why add this?** When MiniMax M2.5 hits its rate limit and makes you wait, you can instantly switch to a NVIDIA NIM model and keep working.
+> 🔵 Alpine / 🟢 Debian
 
----
 
-### Step 1 — Get Your Free NVIDIA API Key
-1. Go to **build.nvidia.com** in your browser
-2. Sign up for a free account — no credit card needed
-3. Click any model → **Get API Key** → copy it
-4. Your key will start with `nvapi-...`
 
-> ✅ Free tier gives rate-limited access to 50+ models including MiniMax M2.7, DeepSeek, Llama, and more.
+export PATH="$HOME/.opencode/bin:$PATH"
+
 
 ---
 
-### Step 2 — Create the NVIDIA NIM Config File
-> 🔵 **Run in Alpine**
+gnu_get_libc_version error
 
-```bash
-mkdir -p ~/.config/opencode
-cat > ~/.config/opencode/opencode.json << 'EOF'
-{
-  "$schema": "https://opencode.ai/config.json",
-  "provider": {
-    "nvidia": {
-      "npm": "@ai-sdk/openai-compatible",
-      "name": "NVIDIA NIM",
-      "options": {
-        "baseURL": "https://integrate.api.nvidia.com/v1",
-        "apiKey": "ADD YOUR NVIDIA NIM API KEY HERE"
-      },
-      "models": {
-        "minimaxai/minimax-m2.7": {
-          "name": "MiniMax M2.7"
-        },
-        "deepseek-ai/deepseek-v3": {
-          "name": "DeepSeek V3"
-        },
-        "deepseek-ai/deepseek-v3-2": {
-          "name": "DeepSeek V3.2"
-        },
-        "meta/llama-3.3-70b-instruct": {
-          "name": "Llama 3.3 70B"
-        },
-        "nvidia/llama-3.1-nemotron-70b-instruct": {
-          "name": "Nemotron 70B"
-        }
-      }
-    }
-  }
-}
-EOF
-```
+> ❌ Alpine libc compatibility issue
 
-> ⚠️ Replace `ADD YOUR NVIDIA NIM API KEY HERE` with your actual `nvapi-...` key before running.
+
+
+> 🟡 Exit Alpine:
+
+
+
+exit
+
+> 🟡 Then switch to Debian:
+
+
+
+proot-distro install debian
+debian
+
 
 ---
 
-### Step 3 — Verify the Config Was Saved
-> 🔵 **Run in Alpine**
+proot-distro should not be executed under PRoot
 
-```bash
-cat ~/.config/opencode/opencode.json
-```
-> Make sure your API key is in there and the JSON looks correct.
+> You are already inside Alpine/Debian. Type exit first to go back to Termux, then run the command again.
 
----
 
-### Step 4 — Launch OpenCode and Select a NVIDIA Model
-> 🔵 **Run in Alpine**
 
-```bash
-opencode
-```
-
-Inside OpenCode:
-1. Type `/models`
-2. Scroll up — you will see **NVIDIA NIM** as a new section
-3. Select any model from the list
-
-> ✅ Done! Your NVIDIA NIM models are now available alongside MiniMax M2.5.
 
 ---
 
-### Recommended NVIDIA NIM Models
+/sdcard not accessible
 
-| Model | Best For |
-|---|---|
-| **MiniMax M2.7** | Best overall — newer than M2.5, great for coding |
-| **DeepSeek V3.2** | Fastest good-quality coding model |
-| **DeepSeek V3** | Slightly lighter, very snappy |
-| **Llama 3.3 70B** | Stable all-rounder |
-| **Nemotron 70B** | Strong reasoning + code |
+> 🟡 Run in Termux
 
-> ⚠️ **Avoid DeepSeek V4 Flash and V4 Pro for now** — they have a known hanging bug in OpenCode and will freeze your session.
 
----
 
-### Switching Between MiniMax M2.5 and NVIDIA NIM
-Inside OpenCode, just type `/models` anytime to switch between providers. No restart needed.
+termux-setup-storage
 
-> 💡 **Smart workflow:** Use **MiniMax M2.5** as your main model. When it rate limits you, switch to **MiniMax M2.7 on NVIDIA NIM** or **DeepSeek V3.2** and keep working without waiting.
+Then re-enter Alpine or Debian.
+
 
 ---
 
-### What the Context Bar Means
-At the bottom of OpenCode you'll see something like `10.9K (5%)` — this is your **context window usage**, not your rate limit. It shows how much of the current conversation the model is holding in memory. Nothing to worry about until it gets close to 90%, at which point start a fresh session.
+Android killed Termux in the background
+
+> 🟡 Run in Termux
+
+
+
+termux-wake-lock
+
+> 💡 Fix permanently:
+Settings → Apps → Termux → Battery → Unrestricted
+
+
+
 
 ---
 
-## 🐙 Optional — GitHub Integration
-> 🔵 **All commands run in Alpine**
-> Skip this section if you don't need to push code to GitHub
+npm run dev says cannot find package.json`
 
-### Install git and GitHub CLI
-```bash
-apk add git github-cli
-```
+> You are in the wrong folder.
 
-### Set Up Git Identity (one time only)
-```bash
-git config --global user.name "YourGitHubUsername"
-git config --global user.email "your@email.com"
-```
 
-### Login to GitHub (one time only)
-```bash
-gh auth login
-```
 
-Answer every question like this:
-
-| Question | Answer |
-|---|---|
-| Where do you use GitHub? | **GitHub.com** |
-| Preferred protocol? | **HTTPS** |
-| Authenticate Git with GitHub credentials? | **Y** |
-| How to authenticate? | **Login with a web browser** |
-
-Then:
-1. **Copy** the one-time code shown (e.g. `XXXX-XXXX`)
-2. Press **Enter**
-3. Open **https://github.com/login/device** in your Android browser
-4. Paste the code → tap **Authorize**
-
-> ✅ Done! GitHub login saved forever.
-
----
-
-### First Time Setting Up a Project with GitHub
-```bash
+ls /sdcard/Download/
 cd /sdcard/Download/your-project
-git init
-git remote add origin https://github.com/YourUsername/your-repo.git
-git add .
-git commit -m "Initial commit"
-git push origin main --force
-```
+npm run dev
 
-### Upload Changes to GitHub (Every Time)
-```bash
-git add .
-git commit -m "describe your changes here"
+
+---
+
+npm install timeout / Rollup native module errors
+
+> More common on Alpine.
+
+
+
+> 🟢 Debian is recommended for Node/Vite projects.
+
+
+
+Inside your project:
+
+rm -rf node_modules package-lock.json
+npm install
+
+If using GitHub Actions:
+
+git add package-lock.json
+git commit -m "add lock file"
 git push
-```
 
-### Override Old Files on GitHub
-```bash
-git add .
-git commit -m "Update all files"
-git push origin main --force
-```
-
-> If branch name error, try `master` instead of `main`:
-> ```bash
-> git push origin master --force
-> ```
-
-### Other Useful Git Commands
-```bash
-git status        # check what changed before uploading
-git log --oneline # see upload history
-```
-
-### Switch GitHub Account
-```bash
-gh auth logout
-gh auth login
-```
 
 ---
 
-## 🔗 Links
+📌 Key Things to Remember
 
-| | |
-|---|---|
-| OpenCode | https://opencode.ai |
-| OpenCode Docs | https://opencode.ai/docs |
-| Termux GitHub | https://github.com/termux/termux-app/releases |
-| NVIDIA NIM | https://build.nvidia.com |
+✅ Always run termux-wake-lock before starting
 
----
+✅ Use the GitHub version of Termux — not Play Store
 
-## 👤 Credits
+✅ alpine = Alpine Linux
 
-**Guide by [@GamingBurst007](https://youtube.com/@GamingBurst007)**
+✅ debian = Debian Linux
 
-| Platform | Link |
-|---|---|
-| 📺 YouTube | youtube.com/@GamingBurst007 |
+✅ Debian is the most stable option for OpenCode
 
----
+✅ Always cd into your project folder before opencode
 
-> 💬 **Have a question?** Drop it in the comments — I'll try to reply to every comment!
->
-> 👍 **If this helped you** — Like, Share & Subscribe for more interesting and useful videos!
+✅ /connect only needed once
+
+✅ Use the Network URL — not localhost — in browser
+
+
 
 ---
 
-*Android Edition · May 2026*
+⚡ Quick Reference
+
+# 🟡 Termux
+termux-wake-lock
+
+# Alpine
+alpine
+
+# Debian
+debian
+
+# Inside Alpine/Debian
+cd /sdcard/Download/your-project
+opencode
+
+# Switch project
+/exit
+cd /sdcard/Download/other-project
+opencode
+
+
+---
+
+🔗 Links
+
+	
+
+[OpenCode](https://opencode.ai?utm_source=chatgpt.com)	https://opencode.ai
+[OpenCode Docs](https://opencode.ai/docs?utm_source=chatgpt.com)	https://opencode.ai/docs
+[Termux GitHub Releases](https://github.com/termux/termux-app/releases?utm_source=chatgpt.com)	https://github.com/termux/termux-app/releases
+[NVIDIA NIM](https://build.nvidia.com?utm_source=chatgpt.com)	https://build.nvidia.com
+
+
+
+---
+
+👤 Credits
+
+Guide by @GamingBurst007
+
+Platform	Link
+
+📺 YouTube	youtube.com/@GamingBurst007
+
+
+
+---
+
+> 💬 Have a question? Drop it in the comments.
+
+👍 If this helped you — Like, Share & Subscribe for more useful videos!
+
+
+
+
+---
+
+Android Edition · May 2026
