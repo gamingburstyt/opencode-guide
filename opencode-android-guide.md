@@ -9,18 +9,23 @@
 
 ## ✅ What You'll Have
 
-- OpenCode running on your Android phone via Termux
-- MiniMax M2.5 Free model — no credit card, no GPU needed
-- Full AI coding assistant right in your terminal
+OpenCode running on your Android phone via Termux
+
+MiniMax M2.5 Free model — no credit card, no GPU needed
+
+Full AI coding assistant right in your terminal
 
 ---
 
 ## 📋 Requirements
 
-- Android phone
-- Termux (GitHub Version) — link in links section below
-- Internet connection
-- GitHub account (optional — only needed if you want to push code to GitHub)
+Android phone
+
+Termux (GitHub Version) — link in links section below
+
+Internet connection
+
+GitHub account (optional — only needed if you want to push code to GitHub)
 
 ---
 
@@ -39,7 +44,9 @@
 ### Step 1 — Install Termux
 
 1. Go to the link in the links section below
+
 2. Download the latest APK — pick arm64-v8a for most phones
+
 3. Install it
 
 > ⚠️ WARNING: Do NOT use the Play Store version. It is outdated and broken.
@@ -157,10 +164,14 @@ opencode --version
 ## 🟢 If Alpine Doesn't Work — Use Debian (Recommended)
 
 > ⚠️ Some devices may get errors like:
-> - gnu_get_libc_version
-> - OpenCode crashes/freezes
-> - Bun/Node native module issues
-> - npm install failures
+>
+> gnu_get_libc_version
+>
+> OpenCode crashes/freezes
+>
+> Bun/Node native module issues
+>
+> npm install failures
 >
 > This happens because Alpine uses musl libc, while many modern tools expect glibc.
 >
@@ -275,8 +286,11 @@ opencode --version
 ### Step 14 — Get Your OpenCode Zen API Key
 
 1. Go to opencode.ai
+
 2. Click Zen → Login → create a free account
+
 3. Go to API Keys → Create → name it anything → copy the key
+
 4. Save it somewhere safe
 
 ---
@@ -294,8 +308,11 @@ opencode
 Inside OpenCode do this:
 
 1. Type `/connect`
+
 2. Select opencode
+
 3. Paste your Zen API key when prompted
+
 4. Select MiniMax M2.5 Free as your model
 
 > ✅ Done! API key is saved forever. You never need to do /connect again.
@@ -585,14 +602,21 @@ git push
 
 ## 📌 Key Things to Remember
 
-- ✅ Always run termux-wake-lock before starting
-- ✅ Use the GitHub version of Termux — not Play Store
-- ✅ alpine = Alpine Linux
-- ✅ debian = Debian Linux
-- ✅ Debian is the most stable option for OpenCode
-- ✅ Always cd into your project folder before opencode
-- ✅ /connect only needed once
-- ✅ Use the Network URL — not localhost — in browser
+✅ Always run termux-wake-lock before starting
+
+✅ Use the GitHub version of Termux — not Play Store
+
+✅ alpine = Alpine Linux
+
+✅ debian = Debian Linux
+
+✅ Debian is the most stable option for OpenCode
+
+✅ Always cd into your project folder before opencode
+
+✅ /connect only needed once
+
+✅ Use the Network URL — not localhost — in browser
 
 ---
 
@@ -616,22 +640,13 @@ debian
 ```bash
 # Inside Alpine/Debian
 cd /sdcard/Download/your-project
-```
-
-```bash
 opencode
 ```
 
 ```bash
 # Switch project
 /exit
-```
-
-```bash
 cd /sdcard/Download/other-project
-```
-
-```bash
 opencode
 ```
 
@@ -664,4 +679,4 @@ Guide by @GamingBurst007
 
 ---
 
-*Android Edition · May 2026*
+Android Edition · May 2026
